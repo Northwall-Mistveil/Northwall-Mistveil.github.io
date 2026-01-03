@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vulpara | 魅樱缭心弦</title>
+    <style>
+        /* --- 全局样式设置 --- */
+        body, html {
+            height: 100%;
+            margin: 0;
+            /* 选择一种简洁优雅的无衬线字体，提升现代感 */
+            font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+            color: #fff; /* 字体颜色设置为白色，以便在深色背景上清晰可见 */
+            overflow: hidden; /* 防止滚动条出现，保持全屏沉浸感 */
+        }
+
+        /* --- 背景图片设置 --- */
+        .bg-image {
+            /* 【重要】请确保你的背景图片文件名为 background.png 并与此 html 文件在同一目录下 */
+            /* 或者修改此处的 url('...') 为你实际的图片路径 */
+            background-image: url('background.png'); 
+            height: 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover; /* 确保图片覆盖整个屏幕 */
+            position: relative;
+        }
+
+        /* --- 内容容器，用于整体布局 --- */
+        .container {
+            display: flex;
+            height: 100%;
+            justify-content: space-between; /* 左右两边分开布局 */
+            align-items: center; /* 垂直居中对齐 */
+            padding: 0 12%; /* 两侧留出较为宽裕的边距，增加呼吸感 */
+            /* 添加一个半透明的黑色遮罩，让前景文字更清晰可读 */
+            background-color: rgba(0, 0, 0, 0.4); 
+            /* 添加一点背景模糊效果，增加层次感和梦幻感 */
+            backdrop-filter: blur(3px); 
+        }
+
+        /* --- 左侧个人信息区域 --- */
+        .left-profile {
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start; /* 内容左对齐 */
+            max-width: 450px; /* 限制最大宽度，防止文字过长 */
+        }
+
+        /* 头像样式 */
+        .avatar {
+            width: 160px;
+            height: 160px;
+            border-radius: 50%; /* 圆形头像 */
+            border: 4px solid #ffb6c1; /* 提取背景中的粉色作为边框 */
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4); /* 添加立体阴影 */
+            margin-bottom: 25px;
+            object-fit: cover; /* 保证图片填充且不变形 */
+            transition: transform 0.3s ease;
+        }
+        .avatar:hover {
+             transform: scale(1.05); /* 鼠标悬停时轻微放大头像 */
+        }
+
+        /* 用户名样式 */
+        .username {
+            font-size: 3em;
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.6); /* 文字阴影增强立体感 */
+            color: #ffb6c1; /* 使用粉色调，成为视觉焦点 */
+            letter-spacing: 1px;
+        }
+
+        /* 介绍文本框样式 */
+        .intro-box {
+            background-color: rgba(255, 255, 255, 0.15); /* 半透明白色背景 */
+            padding: 25px;
+            border-radius: 12px;
+            border-left: 5px solid #ffb6c1; /* 左侧粉色装饰线，增加设计感 */
+            line-height: 1.8;
+            font-size: 1.15em;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        /* --- 右侧按钮区域 --- */
+        .right-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 25px; /* 按钮之间的间距 */
+            align-items: flex-end; /* 按钮右对齐 */
+        }
+
+        /* 按钮样式 */
+        .btn {
+            text-decoration: none;
+            color: #ffb6c1; /* 文字颜色 */
+            padding: 12px 40px;
+            border: 2px solid #ffb6c1; /* 边框颜色 */
+            border-radius: 50px; /* 圆角 */
+            font-size: 1.3em;
+            font-weight: 600;
+            text-align: center;
+            transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1); /* 丝滑的过渡效果 */
+            background-color: rgba(0, 0, 0, 0.3); /* 默认深色半透明背景 */
+            text-transform: uppercase; /* 字母大写 */
+            letter-spacing: 3px; /* 字母间距 */
+            min-width: 120px; /* 保证按钮最小宽度 */
+            display: inline-block;
+        }
+
+        /* 按钮悬停效果 */
+        .btn:hover {
+            background-color: #ffb6c1; /* 悬停时背景变粉 */
+            color: #fff; /* 悬停时文字变白 */
+            /* 添加粉色光晕效果，增加灵动感 */
+            box-shadow: 0 0 20px rgba(255, 182, 193, 0.9); 
+            transform: translateY(-4px); /* 微微上浮，产生点击欲望 */
+        }
+        
+        /* 响应式设计：适配移动端设备 */
+        @media (max-width: 768px) {
+            .container {
+                flex-direction: column;
+                justify-content: center;
+                padding: 20px;
+                text-align: center;
+            }
+            .left-profile {
+                align-items: center;
+                margin-bottom: 40px;
+                max-width: 100%;
+            }
+            .right-buttons {
+                align-items: center;
+            }
+        }
+
+    </style>
+</head>
+<body>
+    <div class="bg-image">
+        <div class="container">
+            <div class="left-profile">
+                <img src="https://github.com/Vulpara.png" alt="Vulpara's Avatar" class="avatar">
+                <div class="username">Vulpara</div>
+                <div class="intro-box">
+                    <p>“逻辑为骨，魅影为魂。在 0 与 1 的荒原里，拨动一曲缭绕的弦音。”</p>
+                    <p>你好，我是 Vulpara。一名栖息在二进制缝隙里的灵狐，偏爱将理性的算法与感性的美学编织在一起。</p>
+                </div>
+            </div>
+
+            <div class="right-buttons">
+                <a href="https://github.com/Vulpara" target="_blank" class="btn">GitHub</a>
+                <a href="#" target="_blank" class="btn">Blogs</a>
+                <a href="#" target="_blank" class="btn">Projects</a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
